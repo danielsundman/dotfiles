@@ -17,10 +17,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "0x6D746873"
-#sudo scutil --set HostName "0x6D746873"
-#sudo scutil --set LocalHostName "0x6D746873"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+sudo scutil --set ComputerName "H"
+sudo scutil --set HostName "H"
+sudo scutil --set LocalHostName "H"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "H"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -155,8 +155,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+# Enable “natural” (Lion-style) scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
@@ -421,15 +421,18 @@ sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
-# Top left screen corner → Mission Control
-defaults write com.apple.dock wvous-tl-corner -int 2
+# Top left screen corner → Desktop
+defaults write com.apple.dock wvous-tl-corner -int 4
 defaults write com.apple.dock wvous-tl-modifier -int 0
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
+# Top right screen corner → Start screen saver
+defaults write com.apple.dock wvous-tr-corner -int 5
 defaults write com.apple.dock wvous-tr-modifier -int 0
-# Bottom left screen corner → Start screen saver
-defaults write com.apple.dock wvous-bl-corner -int 5
+# Bottom left screen corner → Launchpad
+defaults write com.apple.dock wvous-bl-corner -int 11
 defaults write com.apple.dock wvous-bl-modifier -int 0
+# Bottom right screen corner → Mission Control
+defaults write com.apple.dock wvous-br-corner -int 2
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -772,9 +775,9 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
-# Disable the all too sensitive backswipe on trackpads
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+# Enable the backswipe on trackpads
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool true
 
 # Disable the all too sensitive backswipe on Magic Mouse
 defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
